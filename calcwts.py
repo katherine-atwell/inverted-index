@@ -25,12 +25,6 @@ import shutil
 import sys
 import time
 
-"""TODO:
--Remove unneeded code
--Remove stopwords
--Remove words that occur only once
--Remove single-letter/character words
-"""
 
 # Uses html2text to tokenize documents in inputdir and 
 # creates corresponding tokenized files in outputdir.
@@ -148,8 +142,7 @@ def write_token_weights(outputdir, tokens_dict, num_files, weights_dict):
       sorted_by_weights.append((key, value))
       weights_dict[key].append((filename[:-4], value))
     write_tuple_list_to_file(sorted_by_weights, outputdir + "/weights", filename[:-4] + ".wts", False)
-    #return weights_dict
-
+    
       
 # Calculates tfidf score for each token in file.
 # Pre:  Given the directory and name of the current file, dict
@@ -274,6 +267,7 @@ def main(argv):
   write_token_weights(outputdir, updated_tokens, num_files, weights)
   write_dictionary_file(outputdir, weights)
   write_postings_file(outputdir, weights)
+  
   # write directory with list of files
   create_directory_file(inputdir, outputdir)
 
